@@ -11,8 +11,7 @@ class Business::Invoice {
 
     method _build_items(@args) {
         return Business::Invoice::Items->new(
-            type => 'Business::Invoice::Item',
-            list => \@args
+            _list => \@args
         );
       }
 

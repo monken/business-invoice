@@ -14,9 +14,13 @@ ok($i = Business::Invoice::Items->new(Business::Invoice::Item->new( quantity => 
 
 is($i->count, 1, 'list contains one item');
 
-is($i->add(Business::Invoice::Item->new( quantity => 4 )), 2, 'add via ->add(Object)');
+$i->push(Business::Invoice::Item->new( quantity => 4 ));
 
-is($i->add({ quantity => 4 }), 3, 'add via ->add(HashRef)');
+is($i->count, 2, 'add via ->insert(Object)');
+
+$i->push({ quantity => 4 });
+
+is($i->count, 3, 'add via ->insert(HashRef)');
 
 ok(my $invoice = Business::Invoice->new(items => $i), 'add items to Invoice via Items');
 
